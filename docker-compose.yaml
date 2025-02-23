@@ -4,8 +4,19 @@ services:
     build: .
     ports:
       - "8080:8080"
+    depends_on:
+      - postgres
     environment:
-      DBURL: postgres://koyeb-adm:npg_xOYiyzTdhZ64@ep-old-voice-a297zvqg.eu-central-1.pg.koyeb.app:5432/koyebdb
-      DBUSERNAME: koyeb-adm
-      DBPASSWORD: npg_xOYiyzTdhZ64
-      DBNAME: koyebdb
+      DBURL: ep-old-voice-a297zvqg.eu-central-1.pg.koyeb.app:5432 # Koyeb PostgreSQL host and port
+      DBNAME: koyebdb # Koyeb database name
+      DBUSERNAME: koyeb-adm # Koyeb database username
+      DBPASSWORD: npg_xOYiyzTdhZ64 # Koyeb database password
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: koyeb-adm # Koyeb username (not used for local)
+      POSTGRES_PASSWORD: npg_xOYiyzTdhZ64 # Koyeb password (not used for local)
+      POSTGRES_DB: koyebdb # Koyeb database name (not used for local)
