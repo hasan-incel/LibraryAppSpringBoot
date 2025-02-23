@@ -4,19 +4,8 @@ services:
     build: .
     ports:
       - "8080:8080"
-    depends_on:
-      - postgres
     environment:
-      DBURL: postgres:5432
-      DBNAME: library-app
-      DBUSERNAME: postgres
-      DBPASSWORD: postgres
-
-  postgres:
-    image: postgres
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: library-app
+      DBURL: postgres://koyeb-adm:npg_xOYiyzTdhZ64@ep-old-voice-a297zvqg.eu-central-1.pg.koyeb.app:5432/koyebdb
+      DBUSERNAME: koyeb-adm
+      DBPASSWORD: npg_xOYiyzTdhZ64
+      DBNAME: koyebdb
